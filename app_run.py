@@ -28,6 +28,25 @@ def fntRegistrar(isbn,nombre,autor,paginas):
     else:
         enter = input('\nDebe ingresar todos los datos <ENTER>')
 
+def fntConsultar(isbn):
+    if isbn!= '':
+        sw = False
+        for i in range(0,len(listIsb)):
+            if isbn == listIsb[i]:
+                sw = True
+                pos = i
+                break
+        if sw == False:
+            enter = input('\nEl ISBN ingresado no existe <ENTER>')
+        else:
+            print('ISBN...........................', listIsb[pos])
+            print('Nombre.........................', listNombre[pos])
+            print('Autor..........................', listAutor[pos])
+            print('Paginas........................', listPaginas[pos])
+            print('Existencias....................', listExistencias[pos])
+            enter = input('\nFin de registros <ENTER>')
+    else:
+        enter = input('\nDebe ingresar el ISBN <ENTER>')
 
 def fntMenu(inic):
     while inic == True:
@@ -49,10 +68,16 @@ def fntMenu(inic):
             pg = input('Ingrese la cantidad de paginas del libro: ')
             fntRegistrar(isbn,nm,at,pg)
         elif opcion == 2:
-            fntConsultar()
+            fntLimpiar()
+            isbn = input('Ingrese el ISBN del libro: ')
+            fntConsultar(isbn)
         elif opcion == 3:
             fntInventario()
         elif opcion == 4:
             fntInforme()
+        elif opcion == 5:
+            inic = False
+        else:
+            enter = input('Opcion incorrecta <ENTER>')
 
 fntMenu(True)
